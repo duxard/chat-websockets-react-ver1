@@ -1,0 +1,7 @@
+/dist
+/node_modules
+/.idea
+*-lock.json
+
+Client/node_modules
+Server/node_modules
