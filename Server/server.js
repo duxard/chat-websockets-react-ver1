@@ -3,6 +3,7 @@ const port = 9090;
 const wss = new WebSocketServer({ port });
 
 let clients = [];
+let counter = 0;
 
 wss.on('listening', () => {
   console.info(`The server is ready at localhost:${port}`);
@@ -21,6 +22,10 @@ wss.on('listening', () => {
 });
 
 function broadcast(message) {
+  // Each message would have to have some unique identifier -
+  // in order to prevent ReactJS from complaining about list "key" property.
+  // "count" will serve the purpose, so we'll mix it in payload broadcast
+  Object.assign(message, { count: ++counter });
   clients.forEach(client => client.send( JSON.stringify(message) ));
 }
 

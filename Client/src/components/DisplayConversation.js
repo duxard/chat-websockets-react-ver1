@@ -5,7 +5,11 @@ export default class DisplayConversation extends Component {
     return (
       <div id="displayConversation">
         {
-          this.props.messages.map(message => <div>{message.username}: {message.message}</div>)
+          this.props.messages.map(message => {
+            return (
+              <div key={message.count}> {message.username}: {message.message} </div>
+            );
+          })
         }
       </div>
     );
